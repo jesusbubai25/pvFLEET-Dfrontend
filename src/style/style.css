@@ -1,0 +1,25 @@
+/* Customize the Clustered Markers */
+.leaflet-marker-icon {
+  background-image: url("../Logo/images/marker-logo-06.png");
+  background-position: center;
+  background-size: cover;
+  /* background: #9370db; */
+  /* border: 3px solid  #ededed; */
+  border-radius: 50%;
+  height: 40px;
+  line-height: 37px;
+  text-align: center;
+  width: 40px;
+  /* left: -12px; */
+  
+}
+.leaflet-marker-icon > div > span {
+  font-weight: 900;
+  color: black;
+  font-size: 2.5vmin;
+  position: relative;
+  /* bottom: 0.3vmin; */
+}
+.leaflet-marker-pane >img {
+  background-image: none;
+}
