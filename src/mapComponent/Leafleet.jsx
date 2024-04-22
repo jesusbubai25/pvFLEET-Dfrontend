@@ -297,9 +297,6 @@ const Leafleet = () => {
                   id="country"
                   value={ProjectData.country || ""}
                   readOnly
-                  // onChange={(e) =>
-                  //   setProjectData({ ...ProjectData, country: e.target.value })
-                  // }
                 ></input>
               </div>
               <div>
@@ -719,7 +716,6 @@ const Leafleet = () => {
 
               <div>
                 <input
-                  // style={{ color: loadingRegister ? "white" : "black" }}
                   type="submit"
                   value={loadingRegister ? "Loading..." : "Submit"}
                 />
@@ -757,13 +753,6 @@ const Leafleet = () => {
                 }}
                 alt="Project-Location"
               />
-              {/* <svg style={{ rotate: "-45deg", position: "relative", top: "3px" }} height={"20px"} width={"20px"} fill="red" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M25.497 6.503l.001-.003-.004.005L3.5 15.901l11.112 1.489 1.487 11.11 9.396-21.992.005-.006z"></path></g></svg> */}
-              {/* <svg height={"30px"} fill="green" width={"30px"}> */}
-              {/* <path d='M12.75 0l-2.25 2.25 2.25 2.25-5.25 6h-5.25l4.125 4.125-6.375 8.452v0.923h0.923l8.452-6.375 4.125 4.125v-5.25l6-5.25 2.25 2.25 2.25-2.25-11.25-11.25zM10.5 12.75l-1.5-1.5 5.25-5.25 1.5 1.5-5.25 5.25z'>
-                    </path> */}
-              {/* <path d={`${window.google.maps.SymbolPath.FORWARD_CLOSED_ARROW}`} fill="red">
-                        </path>
-                    </svg> */}
               <span
                 style={{ height: "15px", borderLeft: "3px solid transparent" }}
               ></span>
@@ -810,8 +799,6 @@ const Leafleet = () => {
             <div className="logo-container">
               <div>
                 <img src={logo} alt="GreenEnco-Logo" />
-                {/* <span>GreenEnco Limited </span>
-                <span>Maximizing Asset Values</span> */}
               </div>
             </div>
             <div>
@@ -860,16 +847,6 @@ const Leafleet = () => {
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-              // url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-              // url="https://tile.openstreetmap.de/{z}/{x}/{y}.png"
-              // url="https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png"
-              // url="https://b.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-              // url="https://tile.openstreetmap.de/{z}/{x}/{y}.png"
-
-              // url="http://otile1.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png"
-              // url="http://otile1.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png"
-              // url="https://a.tile.opencyclemap.org/cycle/${z}/${x}/${y}.png"
-              // url="http://tile.openstreetmap.org/${z}/${x}/${y}{r}.png"
             />
             <ZoomControl position="bottomleft" />
             <div className="step-container" ref={ref5}>
@@ -1016,10 +993,6 @@ const Leafleet = () => {
               style={{
                 height: openData ? "75vmin" : "0",
                 border: openData ? "2px solid orange" : "none",
-                // animation:openData?"detail-container 1s ease-in-out":"none"
-                // height: "70vmin",
-                // border:"2px solid orange",
-                // display:openData?"flex":"none"
               }}
               onClick={(e) => {
                 e.stopPropagation();
@@ -1041,10 +1014,10 @@ const Leafleet = () => {
                   <p>Project Location </p>
                   <span>
                     {openProjectData?.Country}
-                    {openProjectData?.State !== "null"
+                    {openProjectData?.State !== null
                       ? ", " + openProjectData?.State
                       : ""}
-                    {openProjectData?.CityOrRegion !== "null"
+                    {openProjectData?.CityOrRegion !== null
                       ? ", " + openProjectData?.CityOrRegion
                       : ""}
                   </span>
@@ -1123,16 +1096,6 @@ const Leafleet = () => {
               ></Marker>
             )}
             <MarkerClusterGroup
-              // style={{
-              //   background: "#9370db",
-              //   border: "3px solid  #ededed",
-              //   borderRadius: "50%",
-              //   color: "black",
-              //   height: "40px",
-              //   lineHeight: "37px",
-              //   textAlign: "center",
-              //   width: "40px"
-              // }}
               onclick={(e) => {
                 if (openData) {
                   setOpenData(false);
@@ -1173,17 +1136,8 @@ const Leafleet = () => {
                     setOpenData(true);
                   }
                 },
-                // overlayadd: (e) => console.log("over lay add ", e),
-                // overlayremove: (e) => console.log("overlayer remove", e),
               }}
-              onClusterClick={(cluster) => {
-                // console.log(cluster);
-                // console.warn(
-                //   "cluster-click",
-                //   cluster,
-                //   cluster.layer.getAllChildMarkers()
-                // );
-              }}
+              onClusterClick={(cluster) => {}}
             >
               {projects?.map((eee, index) => {
                 let DefaultIcon = L.divIcon({
@@ -1205,7 +1159,6 @@ const Leafleet = () => {
                 );
               })}
             </MarkerClusterGroup>
-
             <GetLocation />
           </MapContainer>
         )}
