@@ -151,9 +151,9 @@ const Leafleet = () => {
   const GetLocation = () => {
     useMapEvent({
       click(ee) {
-        if (!openData) {
+        if (!openData && !openCountryDetail) {
           setmarker({ lat: ee.latlng.lat, lng: ee.latlng.lng });
-        }
+        }else if(openCountryDetail)setOpenCountryDetail(false)
       },
       zoomend: (e) => {},
     });
@@ -203,7 +203,6 @@ const Leafleet = () => {
           alert("Please Select a proper location");
           return;
         }
-        console.log("Location detail is ", data);
         setProjectData({
           ...ProjectData,
           country: data?.address?.country,
@@ -238,7 +237,6 @@ const Leafleet = () => {
       }
     }
   };
-
   useMemo(() => {
     if (projects?.length > 0) {
       let newArr = [];
@@ -261,6 +259,7 @@ const Leafleet = () => {
       setStoreCountry(newArr);
     }
   }, [projects]);
+
   useEffect(() => {
     getAllProjects();
   }, []);
@@ -274,7 +273,7 @@ const Leafleet = () => {
           overflow: openForm || loading2 ? "auto" : "hidden",
         }}
       >
-        {!loading2 ? (
+        {!loading2 && openForm ? (
           <div className="form-div">
             <i
               className="fa-solid fa-xmark form-x-mark"
@@ -377,7 +376,7 @@ const Leafleet = () => {
                   <option selected disabled value="">
                     Select Module Type
                   </option>
-                  <option value="Thin-Film (A-SI)">Thin-Film (CdTe)</option>
+                  <option value="Thin-Film (CdTe)">Thin-Film (CdTe)</option>
                   <option value="Polycrystalline">Polycrystalline</option>
                   <option value="Monocrystalline">Monocrystalline</option>
                   <option value="Monocrystalline PERC (Mono-facial)">
@@ -521,7 +520,7 @@ const Leafleet = () => {
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="tilt-angle-01">Tilt Angle(deg): </label>
+                    <label htmlFor="tilt-angle-01">Tilt Angle (deg): </label>
                     <select
                       id="tilt-angle-01"
                       onChange={(e) => {
@@ -585,7 +584,7 @@ const Leafleet = () => {
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="tilt-angle-02">Tilt Angle(deg): </label>
+                    <label htmlFor="tilt-angle-02">Tilt Angle (deg): </label>
                     <select
                       id="tilt-angle-02"
                       onChange={(e) => {
@@ -741,60 +740,57 @@ const Leafleet = () => {
         <div className="main-container-1">
           <div>
             <div>
-              <span>Project Locations</span>
-              <img
-                src={img7}
-                height={"25px"}
-                width={"25px"}
-                style={{
-                  // border:"2px solid red"
-                  position: "relative",
-                  top: "3px",
-                }}
-                alt="Project-Location"
-              />
-              <span
-                style={{ height: "15px", borderLeft: "3px solid transparent" }}
-              ></span>
-              <span>Your location</span>
-              <svg
-                height={""}
-                width={"25px"}
-                viewBox="0 0 512 512"
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="rgb(4, 142, 173)"
-              >
-                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  {" "}
-                  <title>location</title>{" "}
+              <div>
+                <span>Project Locations</span>
+                <img
+                  src={img7}
+                  style={{
+                    // border:"2px solid red"
+                    position: "relative",
+                    top: "3px",
+                  }}
+                  alt="Project-Location"
+                />
+              </div>
+              <div>
+                <span>Your location</span>
+                <svg
+                  viewBox="0 0 512 512"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="rgb(4, 142, 173)"
+                >
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                   <g
-                    id="Page-1"
-                    stroke="none"
-                    strokeWidth="1"
-                    fill="none"
-                    fillRule="evenodd"
-                  >
+                    id="SVGRepo_tracerCarrier"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
                     {" "}
+                    <title>location</title>{" "}
                     <g
-                      id="Combined-Shape"
-                      fill="rgb(14, 200, 241)"
-                      transform="translate(106.666667, 42.666667)"
+                      id="Page-1"
+                      stroke="none"
+                      strokeWidth="1"
+                      fill="none"
+                      fillRule="evenodd"
                     >
                       {" "}
-                      <path d="M149.333333,7.10542736e-15 C231.807856,7.10542736e-15 298.666667,66.8588107 298.666667,149.333333 C298.666667,174.270044 292.571852,197.766489 281.750846,218.441128 L149.333333,448 L19.9831547,224.008666 C7.25333333,202.026667 2.84217094e-14,176.537017 2.84217094e-14,149.333333 C2.84217094e-14,66.8588107 66.8588107,7.10542736e-15 149.333333,7.10542736e-15 Z M149.333333,42.6666667 C90.42296,42.6666667 42.6666667,90.42296 42.6666667,149.333333 C42.6666667,166.273109 46.5745408,182.526914 53.969702,197.200195 L57.5535689,203.746216 L149.333333,362.666667 L241.761134,202.626841 C251.054097,186.579648 256,168.390581 256,149.333333 C256,90.42296 208.243707,42.6666667 149.333333,42.6666667 Z M149.333333,85.3333333 C184.679557,85.3333333 213.333333,113.987109 213.333333,149.333333 C213.333333,184.679557 184.679557,213.333333 149.333333,213.333333 C113.987109,213.333333 85.3333333,184.679557 85.3333333,149.333333 C85.3333333,113.987109 113.987109,85.3333333 149.333333,85.3333333 Z M149.333333,128 C137.551259,128 128,137.551259 128,149.333333 C128,161.115408 137.551259,170.666667 149.333333,170.666667 C161.115408,170.666667 170.666667,161.115408 170.666667,149.333333 C170.666667,137.551259 161.115408,128 149.333333,128 Z">
+                      <g
+                        id="Combined-Shape"
+                        fill="rgb(14, 200, 241)"
+                        transform="translate(106.666667, 42.666667)"
+                      >
                         {" "}
-                      </path>{" "}
+                        <path d="M149.333333,7.10542736e-15 C231.807856,7.10542736e-15 298.666667,66.8588107 298.666667,149.333333 C298.666667,174.270044 292.571852,197.766489 281.750846,218.441128 L149.333333,448 L19.9831547,224.008666 C7.25333333,202.026667 2.84217094e-14,176.537017 2.84217094e-14,149.333333 C2.84217094e-14,66.8588107 66.8588107,7.10542736e-15 149.333333,7.10542736e-15 Z M149.333333,42.6666667 C90.42296,42.6666667 42.6666667,90.42296 42.6666667,149.333333 C42.6666667,166.273109 46.5745408,182.526914 53.969702,197.200195 L57.5535689,203.746216 L149.333333,362.666667 L241.761134,202.626841 C251.054097,186.579648 256,168.390581 256,149.333333 C256,90.42296 208.243707,42.6666667 149.333333,42.6666667 Z M149.333333,85.3333333 C184.679557,85.3333333 213.333333,113.987109 213.333333,149.333333 C213.333333,184.679557 184.679557,213.333333 149.333333,213.333333 C113.987109,213.333333 85.3333333,184.679557 85.3333333,149.333333 C85.3333333,113.987109 113.987109,85.3333333 149.333333,85.3333333 Z M149.333333,128 C137.551259,128 128,137.551259 128,149.333333 C128,161.115408 137.551259,170.666667 149.333333,170.666667 C161.115408,170.666667 170.666667,161.115408 170.666667,149.333333 C170.666667,137.551259 161.115408,128 149.333333,128 Z">
+                          {" "}
+                        </path>{" "}
+                      </g>{" "}
                     </g>{" "}
-                  </g>{" "}
-                </g>
-              </svg>
+                  </g>
+                </svg>
+              </div>
             </div>
             <div className="logo-container">
               <div>
@@ -965,6 +961,7 @@ const Leafleet = () => {
               {storeCountry?.map((e, index) => {
                 return (
                   <div
+                    key={index}
                     id={countryHilight === e.name ? "selected-country" : ""}
                     style={{
                       backgroundColor:
@@ -991,7 +988,7 @@ const Leafleet = () => {
             <div
               className="detail-container-1"
               style={{
-                height: openData ? "75vmin" : "0",
+                height: openData ? "73vmin" : "0",
                 border: openData ? "2px solid orange" : "none",
               }}
               onClick={(e) => {
@@ -1079,7 +1076,7 @@ const Leafleet = () => {
                 </div>
                 <div>
                   <p>Plant Generation</p>
-                  <span>{openProjectData?.PlantGeneration} KWh</span>
+                  <span>{openProjectData?.PlantGeneration} MWh</span>
                 </div>
               </div>
             </div>

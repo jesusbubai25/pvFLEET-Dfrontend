@@ -24,11 +24,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5vmax;
     color: white;
+    gap: 0.8vmax;
+  }
+  .main-container-1 > :first-child > :first-child>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .main-container-1 > :first-child > :first-child>div img{
+    height: 3.5vmin;
+    width: 3.5vmin;
+    margin-left: 0.3rem;
+    padding-bottom: 0.1rem;
+  }
+  .main-container-1 > :first-child > :first-child>div svg{
+    height:3.5vmin;
+    width:3.5vmin
   }
   
-  .main-container-1 > :first-child > :first-child > span {
+  .main-container-1 > :first-child > :first-child>div > span {
     font-size: 1.2vmax;
     font-weight: 600;
   }
@@ -37,8 +52,7 @@
     bottom: 0;
     left: 0;
   }
-  .logo-container {
-  }
+
   .logo-container > div {
     display: flex;
     flex-direction: column;
