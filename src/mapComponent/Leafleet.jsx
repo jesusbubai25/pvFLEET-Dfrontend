@@ -1166,14 +1166,3 @@ const Leafleet = () => {
 
 export default Leafleet;
 
-// "Ganjam"
-// latitude
-// "19.38705000"
-// longitude
-// "85.05079000"
-
-// "Cuttack"
-// latitude
-// "20.50000000"
-// longitude
-// "86.25000000"
