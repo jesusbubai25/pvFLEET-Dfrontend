@@ -638,7 +638,7 @@ const Leafleet = () => {
               )}
 
               <div>
-                <label htmlFor="irradiation">Annual Irradiation:</label>
+                <label htmlFor="irradiation">Irradiation (Annual):</label>
                 <input
                   style={{ paddingRight: "32%" }}
                   type="number"
@@ -665,7 +665,7 @@ const Leafleet = () => {
                 </span>
               </div>
               <div>
-                <label htmlFor="irradiation">Plant Generation: </label>
+                <label htmlFor="irradiation">Plant Generation (Annual): </label>
                 <input
                   style={{ paddingRight: "32%" }}
                   type="number"
@@ -1069,13 +1069,13 @@ const Leafleet = () => {
                   </div>
                 )}
                 <div>
-                  <p>Irradiation</p>
+                  <p>Irradiation (Annual)</p>
                   <span>
                     {openProjectData?.AnnualIrradiation} KWh/m<sup>2</sup>
                   </span>
                 </div>
                 <div>
-                  <p>Plant Generation</p>
+                  <p>Plant Generation (Annual)</p>
                   <span>{openProjectData?.PlantGeneration} MWh</span>
                 </div>
               </div>
